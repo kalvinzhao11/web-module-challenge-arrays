@@ -69,8 +69,8 @@ function addFlavor(flavors, newFlavor){
     return flavors
 
 }
-const coconut = "coconut"
-console.log(addFlavor(originalFlavors, coconut))
+const sherbert = "Rainbow Sherbert"
+console.log(addFlavor(originalFlavors, sherbert))
 
 /* Task 3: Houston, we have a problem! There are now 32 flavors in the array! Your task is to remove an item from the end of the array. 
 
@@ -82,11 +82,13 @@ Your function should remove a flavor from the end of the array and console.log t
 
 For example removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]*/ 
 
-function removeLastFlavor(/*code here*/){
+function removeLastFlavor(flavors){
 
     /*code here*/
-
+    flavors.pop()
+    return flavors
 }
+console.log(removeLastFlavor(originalFlavors))
 
 /* Task 4: Write a function that returns a flavor at a given index in the array.
 
@@ -97,11 +99,17 @@ Your function should accept:
 
 For example, getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully. */
 
-function getFlavorByIndex(/*code here*/){
-
+function getFlavorByIndex(flavors, indexNumber){
+    const errorMessage = "There are no ice cream flavor associated with the given index number"
     /*code here*/
+    if (flavors.length - 1 < indexNumber) {
+        return errorMessage
+    } else {
+        return flavors[indexNumber]
+    }
 
 }
+console.log(getFlavorByIndex(originalFlavors, 2))
 
 /* Task 5: As corporate wants to add more and more flavors to their lineup, they've realized that they need to remove flavors based on flavor name, as opposed to just arbitrarily removing the first or last flavor. Your task is to get an index by flavor name, and remove that flavor from the array. 
 
