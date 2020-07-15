@@ -149,7 +149,7 @@ and should return a new array that is identical to the old array. You can name t
 function copy(old, newList){
 
     /*code here*/
-    return newList = old
+    return newList = [...old]
 
 }
 let copyFlavor = []
@@ -196,12 +196,18 @@ and should return the average number of words per item in the array.
 
 For example, getAverageWordLength(originalFlavors) should return a number between 0 and 3. */
 
-function getAverageWordLength(/*code here*/){
+function getAverageWordLength(originalFlavors){
 
     /*code here*/
-
+    let totalChar = 0
+    let avgChar = 0
+    for (x in originalFlavors) {
+        totalChar += originalFlavors[x].length
+    }
+    avgChar = totalChar / originalFlavors.length
+    return avgChar
 }
-
+console.log(getAverageWordLength(originalFlavors))
 
 /* STRETCH 2: Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors.
 
