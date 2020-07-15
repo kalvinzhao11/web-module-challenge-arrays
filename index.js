@@ -290,8 +290,20 @@ var regionalFlavors = ["Pink Bubblegum",
     "Chocolate Chocolate Chip Cheesecake",
     "Caramel 'n' Cookies"]
 
-function getRandomFlavors(/*code here*/){
+function getRandomFlavors(one, two, three, four){
 
     /*code here*/
-
+    let allFlavor = []
+    let thirtyOneFlavor = []
+    allFlavor.push(...one, ...two, ...three, ...four)
+    const totalFlavor = allFlavor.length
+    while (thirtyOneFlavor.length < 31){
+        var randomNum = Math.floor(Math.random() * allFlavor.length)
+        let randomFlavor = allFlavor[randomNum]
+        if (!thirtyOneFlavor.includes(randomFlavor)){
+            thirtyOneFlavor.push(randomFlavor)
+        }
+    }
+    return thirtyOneFlavor
 }
+console.log(getRandomFlavors(newFlavors, seasonalFlavors, regionalFlavors, originalFlavors))
