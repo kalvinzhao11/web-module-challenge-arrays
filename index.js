@@ -170,12 +170,18 @@ DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem.
 
 hint - you can use the .includes method to help you solve this */
 
-function filterByWord(/*code here*/){
-
+function filterByWord(flavor, filter){
+    let filteredArray = []
     /*code here*/
+    for (x in flavor){
+        if (flavor[x].includes(filter)){
+            filteredArray.push(flavor[x])
+        }
+    }
+    return filteredArray
 
 }
-
+console.log(filterByWord(originalFlavors, "Chocolate"))
 
 
 /* 🧁🍦🍨 STRETCH 🍨🍦🍫*/ 
