@@ -40,11 +40,16 @@ To save you from having to count the items above, you can assume that length of 
 
 i.e. is31Flavors(originalFlavors) will return TRUE.*/
 
-function is31Flavors(/*code here*/){
+function is31Flavors(icecream){
 
     /*code here*/
-
+    if (icecream.length == 31) {
+        return true;
+    } else {
+        return false;
+    }
 }
+console.log(is31Flavors(originalFlavors))
 
 /* Task 2: Corporate has come to you with an idea for a new flavor: Rainbow Sherbert! They think this will be a game changer. You need to modify the array to include this flavor. 
 
@@ -57,12 +62,15 @@ Your function should add the flavor to the front of the array and console.log th
 
 For example addFlavor("Rainbow Sherbert", originalFlavors) should return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla Burnt Almond"] */ 
 
-function addFlavor(/*code here*/){
+function addFlavor(flavors, newFlavor){
 
     /*code here*/
+    flavors.unshift(newFlavor)
+    return flavors
 
 }
-
+const sherbert = "Rainbow Sherbert"
+console.log(addFlavor(originalFlavors, sherbert))
 
 /* Task 3: Houston, we have a problem! There are now 32 flavors in the array! Your task is to remove an item from the end of the array. 
 
@@ -74,11 +82,13 @@ Your function should remove a flavor from the end of the array and console.log t
 
 For example removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]*/ 
 
-function removeLastFlavor(/*code here*/){
+function removeLastFlavor(flavors){
 
     /*code here*/
-
+    flavors.pop()
+    return flavors
 }
+console.log(removeLastFlavor(originalFlavors))
 
 /* Task 4: Write a function that returns a flavor at a given index in the array.
 
@@ -89,11 +99,17 @@ Your function should accept:
 
 For example, getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully. */
 
-function getFlavorByIndex(/*code here*/){
-
+function getFlavorByIndex(flavors, indexNumber){
+    const errorMessage = "There are no ice cream flavor associated with the given index number"
     /*code here*/
+    if (flavors.length - 1 < indexNumber) {
+        return errorMessage
+    } else {
+        return flavors[indexNumber]
+    }
 
 }
+console.log(getFlavorByIndex(originalFlavors, 2))
 
 /* Task 5: As corporate wants to add more and more flavors to their lineup, they've realized that they need to remove flavors based on flavor name, as opposed to just arbitrarily removing the first or last flavor. Your task is to get an index by flavor name, and remove that flavor from the array. 
 
@@ -108,11 +124,18 @@ Hint: You can use .splice() for this
 
 */
 
-function removeFlavorByName(/*code here*/){
+function removeFlavorByName(flavors, removeFlavor){
 
     /*code here*/
+    for (x in flavors){
+        if (flavors[x] == removeFlavor) {
+            flavors.splice(x, 1)
+        }
+    }
+    return flavors
 
 }
+console.log(removeFlavorByName(originalFlavors, "Vanilla"))
 
 
 /* Task 6: With all of these changes going on, we don't want to lose track of the actual, original 31 flavors. Write a function called copy that makes a copy of the array. 
@@ -123,11 +146,14 @@ Your function should accept:
 
 and should return a new array that is identical to the old array. You can name the new array however you'd like. */
 
-function copy(/*code here*/){
+function copy(old, newList){
 
     /*code here*/
+    return newList = [...old]
 
 }
+let copyFlavor = []
+console.log(copy(originalFlavors, copyFlavor))
 
 /* Task 7: July 7th is "World Chocolate Day" and Baskin Robins wants to create promotional materials highlighting all of their chocolate flavors. Write a function that checks every item in the array for a given string and returns a new array called filteredArray with just these values. Rather than hardcoding "chocolate" into your function, pass a string as a parameter, and invoke with the argument "chocolate". This way you could also filter for "Vanilla", "Sherbert", etc. when those holidays roll around.
 
@@ -144,12 +170,18 @@ DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem.
 
 hint - you can use the .includes method to help you solve this */
 
-function filterByWord(/*code here*/){
-
+function filterByWord(flavor, filter){
+    let filteredArray = []
     /*code here*/
+    for (x in flavor){
+        if (flavor[x].includes(filter)){
+            filteredArray.push(flavor[x])
+        }
+    }
+    return filteredArray
 
 }
-
+console.log(filterByWord(originalFlavors, "Chocolate"))
 
 
 /* 🧁🍦🍨 STRETCH 🍨🍦🍫*/ 
@@ -164,12 +196,18 @@ and should return the average number of words per item in the array.
 
 For example, getAverageWordLength(originalFlavors) should return a number between 0 and 3. */
 
-function getAverageWordLength(/*code here*/){
+function getAverageWordLength(originalFlavors){
 
     /*code here*/
-
+    let totalChar = 0
+    let avgChar = 0
+    for (x in originalFlavors) {
+        totalChar += originalFlavors[x].length
+    }
+    avgChar = totalChar / originalFlavors.length
+    return avgChar
 }
-
+console.log(getAverageWordLength(originalFlavors))
 
 /* STRETCH 2: Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors.
 
@@ -252,8 +290,20 @@ var regionalFlavors = ["Pink Bubblegum",
     "Chocolate Chocolate Chip Cheesecake",
     "Caramel 'n' Cookies"]
 
-function getRandomFlavors(/*code here*/){
+function getRandomFlavors(one, two, three, four){
 
     /*code here*/
-
+    let allFlavor = []
+    let thirtyOneFlavor = []
+    allFlavor.push(...one, ...two, ...three, ...four)
+    const totalFlavor = allFlavor.length
+    while (thirtyOneFlavor.length < 31){
+        var randomNum = Math.floor(Math.random() * allFlavor.length)
+        let randomFlavor = allFlavor[randomNum]
+        if (!thirtyOneFlavor.includes(randomFlavor)){
+            thirtyOneFlavor.push(randomFlavor)
+        }
+    }
+    return thirtyOneFlavor
 }
+console.log(getRandomFlavors(newFlavors, seasonalFlavors, regionalFlavors, originalFlavors))
